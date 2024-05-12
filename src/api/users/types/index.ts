@@ -1,5 +1,5 @@
-export type TGender = "male" | "female"
-export type TUserNameTitle = "Mr" | "Ms" | "Mrs"
+export type TGender = 'male' | 'female'
+export type TUserNameTitle = 'Mr' | 'Ms' | 'Mrs'
 export type TUserName = {
   title: TUserNameTitle
   first: string
@@ -14,4 +14,3 @@ export interface IUserResult {
 export interface IUser {
   results: IUserResult[]
 }
-

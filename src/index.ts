@@ -1,18 +1,14 @@
-import { fetchUsers } from "./api"
-import { UserComponent } from "./components"
+import { fetchUsers } from './api'
+import { UserComponent, render } from './components'
 
 const initialFetch = async () => {
   const users = await fetchUsers()
 
-  if(users) {
-    for (const user of users.results) {
-      const userComponent = new UserComponent(user)
+  const components =
+    users?.results.map((user) => ({ component: UserComponent, props: user })) ??
+    []
 
-      document.body.appendChild(userComponent)
-    }
-  }
-
+  render(components)
 }
 
 initialFetch()
-
