@@ -1,20 +1,11 @@
-import { renderComponent } from './renderComponent'
-import { IComponent } from './types'
-
-export const render = <T>(
-  components: IComponent<T> | IComponent<T>[],
-  parent?: Node,
+export const render = async<T>(
+  template: string | Promise<string>,
+  parent?: Node
 ) => {
+  const awaitedTemplate = await template
   const parentNode = parent ?? document.body
 
-  if (Array.isArray(components)) {
-    components.forEach((component) => {
-      renderComponent(component, parentNode)
-    })
+  const parsed = new DOMParser().parseFromString(awaitedTemplate, 'text/html')
 
-    return
-  }
-
-  const component = components
-  renderComponent(component, parentNode)
+  parentNode.appendChild(parsed.body.children[0])
 }

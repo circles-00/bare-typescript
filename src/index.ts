@@ -1,14 +1,8 @@
-import { fetchUsers } from './api'
-import { UserComponent, render } from './components'
+import { render } from './components'
+import { UsersList } from './components/common/UsersList'
 
 const initialFetch = async () => {
-  const users = await fetchUsers()
-
-  const components =
-    users?.results.map((user) => ({ component: UserComponent, props: user })) ??
-    []
-
-  render(components)
+  render(UsersList())
 }
 
 initialFetch()
